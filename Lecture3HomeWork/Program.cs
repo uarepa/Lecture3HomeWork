@@ -19,16 +19,26 @@ namespace Lecture3HomeWork
         // Task2 The user enters 1 number (A). Print all numbers from 1 to 1000 that are divisible by A.
         static int[] DivisibleNumbers(double a)
         {
-            int[] NumberArray = new int[1000];
-            int ArrayLength = 0;
+            
+            int count = 0;
             for (int i = 1; i <= 1000; i++)
             {
                 if ((i % a) == 0)
                 {
-                    NumberArray[ArrayLength++] = i;
+                    count++;
                 }
             }
-            return NumberArray;
+
+            int[] numberArray = new int[count];
+            int arrayLength = 0;
+            for (int i = 1; i <= 1000; i++)
+            {
+                if ((i % a) == 0)
+                {
+                    numberArray[arrayLength++] = i;
+                }
+            }
+            return numberArray;
         }
 
         // Task3 The user enters 1 number (A). Find the number of positive integers whose square is less than A.
@@ -124,8 +134,7 @@ namespace Lecture3HomeWork
             int cube = 0;
             int temp = number;
             while(temp > 1)
-            {
-                
+            {  
                 if((temp * temp * temp) > number)
                 {
                     temp /= 2;
@@ -140,30 +149,33 @@ namespace Lecture3HomeWork
                     cube = temp;
                     break;
                 }
-
-
             }
 
-            /// simple version
+            return cube;
 
-            //for (int i = 1; i <= number; i++)
-            //{
-            //    if (i * i * i > number)
-            //    {
-            //        return 0;
-            //    }
-
-            //    if (i * i * i == number)
-            //    {
-            //        cube = i;
-            //        break;
-            //    }
-            //}
 
             /// simple version
 
+            for (int i = 1; i <= number; i++)
+            {
+                if (i * i * i > number)
+                {
+                    return 0;
+                }
+
+                if (i * i * i == number)
+                {
+                    cube = i;
+                    break;
+                }
+            }
 
             return cube;
+
+            /// simple version
+
+
+
         }
 
         //task 9. The user enters number. Find the number of odd digits of this number.
@@ -207,8 +219,7 @@ namespace Lecture3HomeWork
         {
             int countOdd = 0;
             int countEven = 0;
-            int[] NumberArray = new int[number];
-            int ArrayLength = 0;
+            
             while (number != 0)
             {
                 if (number % 2 != 0)
@@ -218,23 +229,33 @@ namespace Lecture3HomeWork
                 else
                 {
                     countEven++;
-                    NumberArray[ArrayLength++] = number;
                 }
 
                 number /= 10;
+            }
 
+            int[] numberArray = new int[countEven];
+            int arrayLength = 0;
+
+            while (number != 0)
+            {
+                if (number % 2 == 0)
+                {
+                    numberArray[arrayLength++] = number;
+                }
+
+                number /= 10;
             }
 
             if (countEven > countOdd)
             {
-                return NumberArray;
+                return numberArray;
             }
             else
             {
-                Array.Clear(NumberArray, 0, ArrayLength);
-                return NumberArray;
-            }
-            
+                Array.Clear(numberArray, 0, arrayLength);
+                return numberArray;
+            } 
         }
 
 
